@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %} User Registration {% endblock %}
+
+{% block login %}
+
+    <form style="background-color:#EEE;" method="post" class="form-horizontal">
+        {% csrf_token %}
+        <div style="background-color:#EEE;" class="form-group text-center">
+            <div class="mt-3 mb-2 col-xs-8">
+                <input name="username" value="" placeholder="Username" type="text" class="form-control" />
+                {% if uf.username.errors %}
+                    {% for err in uf.username.errors %}
+                        <div class="fs-6 mb-2 col-xs-8">
+                            <p style="font-size:12px;color:red" class="ml-2 mt-2">* {{ err }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="mt-3 mb-2 col-xs-8">
+                <input name="first_name" value="" placeholder="First Name" type="text" class="form-control" />
+                {% if uf.first_name.errors %}
+                    {% for err in uf.first_name.errors %}
+                        <div class="fs-6 mb-2 col-xs-8">
+                            <p style="font-size:12px;color:red" class="ml-2 mt-2">* {{ err }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="mt-3 mb-2 col-xs-8">
+                <input name="last_name" value="" placeholder="Last Name" type="text" class="form-control" />
+                {% if uf.last_name.errors %}
+                    {% for err in uf.last_name.errors %}
+                        <div class="fs-6 mb-2 col-xs-8">
+                            <p style="font-size:12px;color:red" class="ml-2 mt-2">* {{ err }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="mt-3 mb-2 col-xs-8">
+                <input name="email" value="" placeholder="Enter Email" type="text" class="form-control" />
+                {{ uf.email.errors }}
+            </div>
+            <div class="mb-2 col-xs-8">
+                <input name="phone" value="" placeholder="Phone Number" class="form-control" />
+                {% if cf.phone.errors %}
+                    {% for err in cf.phone.errors %}
+                        <p style="font-size:12px;color:red" class="ml-2 mt-2">* {{ err }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="mb-2 col-xs-8">
+                <input name="password1" value="" placeholder="Password" type="password" class="form-control" />
+                {% if uf.password1.errors %}
+                    {% for err in uf.password1.errors %}
+                        <p style="font-size:12px;color:red" class="ml-2 mt-2">* {{ err }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="mb-2 col-xs-8">
+                <input name="password2" value="" placeholder="Confirm Password" type="password" class="form-control" />
+                {% if uf.password2.errors %}
+                    {% for err in uf.password2.errors %}
+                        <p style="font-size:12px;color:red" class="ml-2 mt-2">* {{ err }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div>
+                {% if form.non_field_errors %}
+                    {% for err in form.non_field_errors %}
+                        <p class="ml-2 mt-2" style="font-size:12px;color:red">{{ err }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col-xs-8">
+                <input style="border-radius:5px;background-color:#333;width:15rem;height:2rem;" class="mt-4 btn-danger" type="submit" value="Submit">
+            </div>
+        </div>
+    </form>
+{% endblock %}
